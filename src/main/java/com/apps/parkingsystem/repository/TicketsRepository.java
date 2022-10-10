@@ -12,5 +12,8 @@ import com.apps.parkingsystem.entity.Tickets;
 public interface TicketsRepository extends JpaRepository<Tickets, Integer> {
 	@Query(nativeQuery = true, value = "SELECT MAX(ID) as ID FROM PARKING_MANAGEMENT.TICKETS")
 	Integer getLastIdFromTickets();
+	
+	@Query(nativeQuery = true, value = "SELECT * FROM PARKING_MANAGEMENT.TICKETS  WHERE id = ?1 or barcode = ?2")
+	Tickets findByIdorBarcode(Integer id, String barcode);
 
 }
