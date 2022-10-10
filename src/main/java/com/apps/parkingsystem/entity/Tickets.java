@@ -19,10 +19,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "tickets")
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
 public class Tickets {
 
 	public Tickets() {
@@ -32,7 +28,7 @@ public class Tickets {
 
 
 	public Tickets(String ticketNumber, Date dateTimeIn, Date dateTimeOut, String barcode,
-			PaymentMethods idPaymentMethods, String checkoutBy, String platNumber, Boolean isPayment, Integer totalHour,
+			Integer idPaymentMethods, String checkoutBy, String platNumber, Boolean isPayment, Integer idVehicleTypes, Integer totalHour,
 			Long totalCost) {
 		super();
 		this.ticketNumber = ticketNumber;
@@ -43,6 +39,7 @@ public class Tickets {
 		this.checkoutBy = checkoutBy;
 		this.platNumber = platNumber;
 		this.isPayment = isPayment;
+		this.idVehicleTypes = idVehicleTypes;
 		this.totalHour = totalHour;
 		this.totalCost = totalCost;
 	}
@@ -66,10 +63,8 @@ public class Tickets {
 	@Column(name = "barcode")
 	private String barcode;
 	
-	@OneToOne
-    @MapsId
-    @JoinColumn(name = "id_payment_methods")
-	private PaymentMethods idPaymentMethods;
+    @Column(name = "id_payment_methods")
+	private Integer idPaymentMethods;
 	
 	@Column(name = "checkout_by")
 	private String checkoutBy;
@@ -80,12 +75,108 @@ public class Tickets {
 	@Column(name = "is_payment")
 	private Boolean isPayment;
 	
+	@Column(name = "id_vehicle_types")
+	private Integer idVehicleTypes;
+	
 	@Column(name = "total_hour")
 	private Integer totalHour;
 	
 	@Column(name = "total_cost")
 	private Long totalCost;
-	
-	
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTicketNumber() {
+		return ticketNumber;
+	}
+
+	public void setTicketNumber(String ticketNumber) {
+		this.ticketNumber = ticketNumber;
+	}
+
+	public Date getDateTimeIn() {
+		return dateTimeIn;
+	}
+
+	public void setDateTimeIn(Date dateTimeIn) {
+		this.dateTimeIn = dateTimeIn;
+	}
+
+	public Date getDateTimeOut() {
+		return dateTimeOut;
+	}
+
+	public void setDateTimeOut(Date dateTimeOut) {
+		this.dateTimeOut = dateTimeOut;
+	}
+
+	public String getBarcode() {
+		return barcode;
+	}
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+
+	public Integer getIdPaymentMethods() {
+		return idPaymentMethods;
+	}
+
+	public void setIdPaymentMethods(Integer idPaymentMethods) {
+		this.idPaymentMethods = idPaymentMethods;
+	}
+
+	public String getCheckoutBy() {
+		return checkoutBy;
+	}
+
+	public void setCheckoutBy(String checkoutBy) {
+		this.checkoutBy = checkoutBy;
+	}
+
+	public String getPlatNumber() {
+		return platNumber;
+	}
+
+	public void setPlatNumber(String platNumber) {
+		this.platNumber = platNumber;
+	}
+
+	public Boolean getIsPayment() {
+		return isPayment;
+	}
+
+	public void setIsPayment(Boolean isPayment) {
+		this.isPayment = isPayment;
+	}
+
+	public Integer getIdVehicleTypes() {
+		return idVehicleTypes;
+	}
+
+	public void setIdVehicleTypes(Integer idVehicleTypes) {
+		this.idVehicleTypes = idVehicleTypes;
+	}
+
+	public Integer getTotalHour() {
+		return totalHour;
+	}
+
+	public void setTotalHour(Integer totalHour) {
+		this.totalHour = totalHour;
+	}
+
+	public Long getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(Long totalCost) {
+		this.totalCost = totalCost;
+	}
 }
