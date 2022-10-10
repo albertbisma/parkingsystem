@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +29,9 @@ public class VehicleTypesGetController {
 	@Autowired
 	private VehicleTypesService vehicleTypesService;
 	
-	@GetMapping("")
+	@GetMapping("/{id}")
 	@ExceptionHandler({ MethodArgumentTypeMismatchException.class })
-	public ResponseEntity<VehicleTypesResponse> getById(@RequestParam(required = false) Integer id){
+	public ResponseEntity<VehicleTypesResponse> getById(@PathVariable() Integer id){
 		VehicleTypes vehicleTypes = new VehicleTypes();
 		VehicleTypesResponse response = new VehicleTypesResponse();
 		
