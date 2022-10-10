@@ -1,11 +1,12 @@
 package com.apps.parkingsystem.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apps.parkingsystem.entity.ParkingLot;
+import com.apps.parkingsystem.model.ParkingLotPutFilledLotRequest;
 import com.apps.parkingsystem.model.ParkingLotRequest;
 import com.apps.parkingsystem.repository.ParkingLotRepository;
 
@@ -23,12 +24,19 @@ public class ParkingLotService {
 		return parkingLotRepository.save(new ParkingLot(request.getIdVehicleTypes(), request.getAvailableLot(), request.getFilledLot()));
 	}
 	
-	public void update(ParkingLotRequest request, Integer id) {
+	public void update(ParkingLotPutFilledLotRequest request, Integer id) {
 		 parkingLotRepository.findById(id).map(parkingLot -> {
-			parkingLot.setAvailableLot(request.getAvailableLot());
 			parkingLot.setFilledLot(request.getFilledLot());
 			return parkingLotRepository.save(parkingLot);
 		}).get();
+	}
+	
+	public ParkingLot findByIdVehicleTypes(Integer idVehicleTypes) {
+		return parkingLotRepository.findByIdVehicleTypes(idVehicleTypes);
+	}
+	
+	public List<ParkingLot> findAll() {
+		return parkingLotRepository.findAll();
 	}
 	
 	public void delete(Integer id) {
