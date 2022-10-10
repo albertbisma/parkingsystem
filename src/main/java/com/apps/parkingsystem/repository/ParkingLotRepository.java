@@ -9,5 +9,5 @@ import com.apps.parkingsystem.entity.ParkingLot;
 @Transactional
 @Repository
 public interface ParkingLotRepository extends JpaRepository<ParkingLot, Integer> {
-
+	ParkingLot findByIdVehicleTypes(Integer idVehicleTypes);
 }
