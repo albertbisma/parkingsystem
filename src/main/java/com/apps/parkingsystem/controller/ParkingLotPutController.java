@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apps.parkingsystem.model.GenericResponse;
-import com.apps.parkingsystem.model.ParkingLotRequest;
+import com.apps.parkingsystem.model.ParkingLotPutFilledLotRequest;
 import com.apps.parkingsystem.model.ParkingLotResponse;
 import com.apps.parkingsystem.service.ParkingLotService;
 
@@ -25,13 +25,8 @@ public class ParkingLotPutController {
 	@Autowired
 	private ParkingLotService parkingLotService;
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<ParkingLotResponse> update(@RequestBody ParkingLotRequest request, @PathVariable Integer id){
-		
-		if(request.getAvailableLot() == null) {
-			return ResponseEntity.badRequest().body(generateResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Field availableLot is mandatory."));
-		}
-		
+	@PutMapping("/filledLot/{id}")
+	public ResponseEntity<ParkingLotResponse> update(@RequestBody ParkingLotPutFilledLotRequest request, @PathVariable Integer id){		
 		if (request.getFilledLot() == null) {
 			return ResponseEntity.badRequest().body(generateResponse(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Field filledLot is mandatory."));
 		}
